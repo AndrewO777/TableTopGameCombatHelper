@@ -62,13 +62,14 @@ function RollAttack(){
     <p>Name: {name}</p>
     <div class="attackRoll">
     {#if attackRoll > 0}
-    <p>{attackRoll} + {attackHitBonus} = {attackRoll + attackHitBonus}</p>
+    <p>Attack Roll: {attackRoll} + {attackHitBonus} = {attackRoll + attackHitBonus}</p>
     {/if}
-    {#each damageRolls as roll (roll.id)}
-        <p class="roll">{roll.value},</p>
-    {/each}
     {#if damageRolls.length > 0}
-    <p class="roll">+ {attackDamageBonus} = {totalDamage}</p>
+    <p>Damage Roll:
+    {#each damageRolls as roll (roll.id)}
+    {roll.value},
+    {/each}
+    + {attackDamageBonus} = {totalDamage}</p>
     {/if}
     </div>
     <button on:click={RollAttack}>Roll Attack</button>

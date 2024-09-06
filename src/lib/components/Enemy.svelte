@@ -2,7 +2,7 @@
     div.self {
         border-radius: 10px;
         border: 1px solid #555;
-        margin: auto;
+        margin: 0 auto;
         display: inline-block;
     }
     p {

@@ -1,13 +1,7 @@
 <style>
-    h1 {
-        text-align: center;
-        font-size: 2em;
-        margin: 0;
-    }
     .inputBlock {
         display: grid;
         grid-template-columns: .8fr 1fr;
-        grid-gap: 1em;
         justify-content: center;
         margin: 1em auto;
     }
@@ -18,6 +12,15 @@
     .inputBlock input {
         width: 20%;
         min-width: 8em;
+    }
+    .enemyBin {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: .5em;
+        margin: auto;
+        width: 100%;
     }
 </style>
 <script lang="ts">
@@ -40,9 +43,9 @@
         });
     }
 </script>
-<h1>Pathfinder Combat Helper</h1>
+<h1>Combat Helper</h1>
 
-<div bind:this={EnemyBin}>
+<div class="enemyBin" bind:this={EnemyBin}>
 </div>
 <div class="inputBlock">
     <label for="name">Name</label>
