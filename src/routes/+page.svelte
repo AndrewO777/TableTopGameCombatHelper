@@ -21,6 +21,7 @@
     }
 </style>
 <script lang="ts">
+    export const prerender = true;
     import { Enemy } from '$lib';
 
     let EnemyBin:HTMLDivElement;

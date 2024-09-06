@@ -7,19 +7,6 @@
     p {
         margin: .5em;
     }
-    .option {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: .5em;
-        align-items: center;
-        border: none;
-    }
-    .option input {
-        height: 2em;
-        width: 6em;
-        margin: 0;
-        padding: 0;
-    }
     button {
         display: inline-block;
         margin: .5em;
