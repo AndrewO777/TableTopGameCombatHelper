@@ -48,7 +48,7 @@ function RollAttack(){
     totalDamage = 0;
     for(let i:number = 0; i < attackDice.length; ++i){
         for(let j:number = 0; j < attackDice[i]; ++j){
-            let entry = {value: Math.floor(Math.random()*dieSize+1), id: dieSize.toString() + j.toString()} ;
+            let entry = {value: Math.floor(Math.random()*dieSize+1), id: crypto.randomUUID()};
             damageRolls = [entry,...damageRolls];
             totalDamage += entry.value;
         }
@@ -64,7 +64,7 @@ function RollAttack(){
     {#if attackRoll > 0}
     <p>Attack Roll: {attackRoll} + {attackHitBonus} = {attackRoll + attackHitBonus}</p>
     {/if}
-    {#if damageRolls.length > 0}
+    {#if totalDamage > 0}
     <p>Damage Roll:
     {#each damageRolls as roll (roll.id)}
     {roll.value},

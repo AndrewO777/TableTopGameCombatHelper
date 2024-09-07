@@ -69,7 +69,8 @@ let attackHitBonus:number = 0;
 let attackDice:number[] = [0,0,0,0,0];
 interface StatData {
     name:string,
-    val:number
+    val:number,
+    id:string
 }
 let stats:StatData[] = [];
 let statName:string;
@@ -110,7 +111,7 @@ function AddAttack(){
 }
 
 function AddStat(){
-    let entry = {name:statName,val:statVal};
+    let entry = {name:statName,val:statVal,id:crypto.randomUUID()};
     stats = [entry, ...stats];
     showAddStat = !showAddStat;
 }
@@ -122,7 +123,7 @@ function AddStat(){
     <p>Health: {curHealth}/{health}</p>
     <p>Armor Class: {ac}</p>
     <div>
-    {#each stats as stat (stat.val)}
+    {#each stats as stat (stat.id)}
         <p>{stat.name}: {stat.val}</p>
     {/each}
     </div>
