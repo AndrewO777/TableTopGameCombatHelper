@@ -18,16 +18,16 @@
         grid-gap: .5em;
         align-items: center;
         border: none;
+        margin: .5em;
     }
     .option input {
         height: 2em;
         width: 6em;
         margin: 0;
-        padding: 0;
     }
     .option button {
         display: inline-block;
-        margin: .5em;
+        margin: 0;
         justify-self: end;
     }
     .option button label {
@@ -53,6 +53,12 @@ export let name: string;
 export let health: number;
 export let ac: number;
 
+interface StatData {
+    name:string,
+    val:number,
+    id:string
+}
+
 //binded variables
 let node:HTMLDivElement;
 let attacksDiv:HTMLDivElement;
@@ -67,14 +73,9 @@ let attackName:string = "";
 let attackDamageBonus:number = 0;
 let attackHitBonus:number = 0;
 let attackDice:number[] = [0,0,0,0,0];
-interface StatData {
-    name:string,
-    val:number,
-    id:string
-}
 let stats:StatData[] = [];
-let statName:string;
-let statVal:number;
+let statName:string = "";
+let statVal:number = 0;
 
 function Hurt(){
     if(hurtInput === undefined){
@@ -111,7 +112,11 @@ function AddAttack(){
 }
 
 function AddStat(){
-    let entry = {name:statName,val:statVal,id:crypto.randomUUID()};
+    let newUUID:string = crypto.randomUUID();
+    while(newUUID in stats){
+        newUUID = crypto.randomUUID();
+    }
+    let entry:StatData = {name:statName,val:statVal,id:newUUID};
     stats = [entry, ...stats];
     showAddStat = !showAddStat;
 }
@@ -179,6 +184,6 @@ function AddStat(){
         <input name="statVal" type="number" bind:value={statVal}/>
     </div>
     <button on:click={AddStat}>Add Stat</button>
-    <button on:click={ ()=>showAddStat = !showAddStat}>Cancel</button>
+    <button on:click={ ()=>showAddStat = !showAddStat }>Cancel</button>
 </div>
 </div>

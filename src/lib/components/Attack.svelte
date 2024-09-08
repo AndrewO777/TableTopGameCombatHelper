@@ -11,13 +11,7 @@
         display: inline-block;
         margin: .5em;
     }
-    .roll {
-        display: inline-block;
-        padding: 0;
-        margin: 0;
-        margin-left: 4px;
-    }
-    .attackRoll {
+    .result {
         border: none;
     }
 </style>
@@ -48,7 +42,11 @@ function RollAttack(){
     totalDamage = 0;
     for(let i:number = 0; i < attackDice.length; ++i){
         for(let j:number = 0; j < attackDice[i]; ++j){
-            let entry = {value: Math.floor(Math.random()*dieSize+1), id: crypto.randomUUID()};
+            let newUUID:string = crypto.randomUUID();
+            while(newUUID in damageRolls){
+                newUUID = crypto.randomUUID();
+            }
+            let entry:DamageData = {value: Math.floor(Math.random()*dieSize+1), id:newUUID};
             damageRolls = [entry,...damageRolls];
             totalDamage += entry.value;
         }
@@ -60,7 +58,7 @@ function RollAttack(){
 </script>
 <div bind:this={node}>
     <p>Name: {name}</p>
-    <div class="attackRoll">
+    <div class="result">
     {#if attackRoll > 0}
     <p>Attack Roll: {attackRoll} + {attackHitBonus} = {attackRoll + attackHitBonus}</p>
     {/if}
